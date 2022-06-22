@@ -1,0 +1,16 @@
+body{
+ text-align: center;   
+}
+hr{
+    width: 500px;
+    background-color: black;
+    height: 5px;
+}
+.board{
+    height: 450px;
+    width: 450px;
+    background-color: blue;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
