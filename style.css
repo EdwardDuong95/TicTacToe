@@ -12,7 +12,7 @@ body{
     font-size: 75px;
     cursor: pointer;
 }
-#cellcontainer{
+#board{
     display: grid;
     grid-template-columns: repeat(3, auto);
     width: 300px;

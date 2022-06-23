@@ -1,3 +1,5 @@
+
+let initialState;
 const gameState = {
   players: ['x', 'o'],
   board: [
@@ -7,24 +9,19 @@ const gameState = {
   ]
 }
 
-let initialState;
+//Grabbing the board from HTML
+const board = document.getElementById("board");
 
-function buildInitialState() {
 
-}
+board.addEventListener('click', (event) => {
 
-// render
-function renderState() {
+  event.target.innerHTML = gameState.players[0]
 
-}
+  // alternate X and O's by Utilizing a If statement
 
-// maybe a dozen or so helper functions for tiny pieces of the interface
+  // makes sure if someone clicks on the same square 
+  // as an occupied square it doesn't change.
+  // makes sure that the boards match up.
 
-// listeners
-function onBoardClick() {
-  // update state, maybe with another dozen or so helper functions...
+} );
 
-  renderState() // show the user the new state
-}
-const board = document.getElementById('board');
-board.addEventListener('click', onBoardClick); // etc
