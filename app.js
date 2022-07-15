@@ -1,4 +1,3 @@
-let initialState;
 const gameState = {
   players: ["x", "o"],
   board: [
@@ -8,10 +7,11 @@ const gameState = {
   ],
   currentPlayer: "x",
 };
-const status = document.getElementById("status");
-const restart = document.getElementById("restart");
+const statusText = document.getElementById("status");
+const restart = document.getElementById("restartButton");
 const board = document.getElementById("board");
-// let cells = document.getElementsByClassName("cell");
+
+// restart.addEventListener ("click", restartGame);
 
 board.addEventListener("click", (event) => {
   if (!event.target.innerHTML) {
@@ -27,7 +27,9 @@ board.addEventListener("click", (event) => {
   } else {
     gameState.currentPlayer = "x";
   }
-  let result = checkWinner(gameState.board);
+  statusText.textContent = `${gameState.currentPlayer}'s turn`;
+
+  checkWinner(gameState.board);
 });
 
 function getRow(board, row) {
@@ -52,10 +54,12 @@ function getDiag2(board) {
 
 function checkArrays(array) {
   if (array.join("") === "xxx") {
+    statusText.textContent = "x wins!";
     console.log("x is winner");
   }
   if (array.join("") === "ooo") {
     console.log("o is winner");
+    statusText.textContent = "o wins!";
   }
 }
 
@@ -68,27 +72,16 @@ function checkWinner(board) {
   checkArrays(getRow(board, 0));
   checkArrays(getDiag1(board));
   checkArrays(getDiag2(board));
-
-  //console.log("XDDDE",firstDiag, secondDiag)
-
-  // for (let i = 0; i < board.length; i++) {
-  //   let diag1 = getDiag1(board, i);
-  //   let winner = checkArrays(diag1);
-  //   if (winner === "x is winner") {
-  //     return "x win";
-  //   }
-  //   if (winner === "o is winner") {
-  //     return "o win";
-  //   }
-  // }
-  // for (let i = 0; i < board.length; i++) {
-  //   let diag2 = getDiag2(board, i);
-  //   let winner = checkArrays(diag2);
-  //   if (winner === "x is winner") {
-  //     return "x win";
-  //   }
-  //   if (winner === "o is winner") {
-  //     return "o win";
-  //   }
-  // }
 }
+
+// let restartGame = () => {
+//   gameState = {
+//   players: ["x", "o"],
+//   board: [
+//     [null, null, null],
+//     [null, null, null],
+//     [null, null, null],
+//   ],
+//   currentPlayer: "x",
+// };
+// }
