@@ -11,7 +11,20 @@ const statusText = document.getElementById("status");
 const restart = document.getElementById("restartButton");
 const board = document.getElementById("board");
 
-// restart.addEventListener ("click", restartGame);
+
+restart.addEventListener ("click", () => {
+    gameState.board = [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ],
+    currentPlayer = "x";
+    [...document.querySelectorAll(".cell")].forEach(
+      (cellDomElement) => (cellDomElement.innerHTML = "")
+    )
+  }
+);
+
 
 board.addEventListener("click", (event) => {
   if (!event.target.innerHTML) {
@@ -55,10 +68,8 @@ function getDiag2(board) {
 function checkArrays(array) {
   if (array.join("") === "xxx") {
     statusText.textContent = "x wins!";
-    console.log("x is winner");
   }
   if (array.join("") === "ooo") {
-    console.log("o is winner");
     statusText.textContent = "o wins!";
   }
 }
@@ -68,20 +79,10 @@ function checkWinner(board) {
   checkArrays(getColumn(board, 1));
   checkArrays(getColumn(board, 2));
   checkArrays(getRow(board, 0));
-  checkArrays(getRow(board, 0));
-  checkArrays(getRow(board, 0));
+  checkArrays(getRow(board, 1));
+  checkArrays(getRow(board, 2));
   checkArrays(getDiag1(board));
   checkArrays(getDiag2(board));
 }
 
-// let restartGame = () => {
-//   gameState = {
-//   players: ["x", "o"],
-//   board: [
-//     [null, null, null],
-//     [null, null, null],
-//     [null, null, null],
-//   ],
-//   currentPlayer: "x",
-// };
-// }
+
