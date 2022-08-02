@@ -1,4 +1,5 @@
 const gameState = {
+  gameRunning: true,
   players: ["x", "o"],
   board: [
     [null, null, null],
@@ -10,24 +11,42 @@ const gameState = {
 const statusText = document.getElementById("status");
 const restart = document.getElementById("restartButton");
 const board = document.getElementById("board");
+const player1 = document.getElementById("player1Label");
+const player2 = document.getElementById("player2Label");
+const cells = document.getElementsByClassName("cell");
+const player1Input = document.getElementById("player1Input");
+const player2Input = document.getElementById("player2Input");
 
+player1Input.addEventListener("submit", (event) => {
+  event.preventDefault();
+  player1.innerHTML = event.target[0].value;
+  event.target[0].value = "";
+});
 
-restart.addEventListener ("click", () => {
-    gameState.board = [
-      [null, null, null],
-      [null, null, null],
-      [null, null, null],
-    ],
-    currentPlayer = "x";
-    [...document.querySelectorAll(".cell")].forEach(
-      (cellDomElement) => (cellDomElement.innerHTML = "")
-    )
-  }
-);
+player2Input.addEventListener("submit", (event) => {
+  event.preventDefault();
+  player2.innerHTML = event.target[0].value;
+  event.target[0].value = "";
+});
 
+restart.addEventListener("click", () => {
+  (gameState.board = [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+  ]),
+    (gameState.currentPlayer = "x");
+  gameState.gameRunning = true;
+  [...document.querySelectorAll(".cell")].forEach(
+    (cellDomElement) => (cellDomElement.innerHTML = "")
+  );
+  player1.innerHTML = "Player 1";
+  player2.innerHTML = "Player 2";
+  statusText.textContent = "";
+});
 
 board.addEventListener("click", (event) => {
-  if (!event.target.innerHTML) {
+  if (!event.target.innerHTML && gameState.gameRunning) {
     event.target.innerHTML = gameState.currentPlayer;
   }
 
@@ -68,9 +87,11 @@ function getDiag2(board) {
 function checkArrays(array) {
   if (array.join("") === "xxx") {
     statusText.textContent = "x wins!";
+    gameState.gameRunning = false;
   }
   if (array.join("") === "ooo") {
     statusText.textContent = "o wins!";
+    gameState.gameRunning = false;
   }
 }
 
@@ -84,5 +105,3 @@ function checkWinner(board) {
   checkArrays(getDiag1(board));
   checkArrays(getDiag2(board));
 }
-
-

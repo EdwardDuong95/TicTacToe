@@ -12,11 +12,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TicTacToe</title>
-    
   </head>
   <body>
     <div id="gamecontainer">
       <h1>Tic Tac Toe</h1>
+      <p>To play against the computer, enter "Computer" for Player 2.</p>
       <div class="board" id="board">
         <div class="cell" id="00"></div>
         <div class="cell" id="01"></div>
@@ -28,11 +28,23 @@
         <div class="cell" id="21"></div>
         <div class="cell" id="22"></div>
       </div>
-      <h3>Player 1<input type="text" id="player1" /></h3>
-      <h3>Player 2 <input type="text" id="player2" /></h3>
+    <div >
       <h2 id="status"></h2>
+      <h3 class="playerLabel" id="player1Label">Player 1</h3>
+          <form id="player1Input">
+            <input  type="text" />
+            <button type="submit" >Change Name</button>
+      </form> 
+      <div >
+        <h3 class="playerLabel" id="player2Label">Player 2</h3>
+            <form id="player2Input">
+              <input  type="text" />
+              <button type="submit" >Change Name</button>
+        </form> 
+      </div>
+      <p></p>
       <button id="restartButton">Restart</button>
-    </div>
+  </div>
     <script src="app.js"></script>
   </body>
 </html>
